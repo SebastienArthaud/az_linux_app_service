@@ -24,8 +24,9 @@ resource "azurerm_linux_web_app" "webapplinux" {
     ip_restriction_default_action     = var.ip_restriction_default_action
     scm_ip_restriction_default_action = var.scm_ip_restriction_default_action
     # Startup command
-    app_command_line = var.app_command_line
-
+    app_command_line                  = var.app_command_line
+    health_check_path                 = var.health_check_path
+    health_check_eviction_time_in_min = var.health_check_eviction_time_in_min
 
     # Utilisation de l'UAI pour le pull d'images depuis ACR
     container_registry_managed_identity_client_id = var.docker_registry_server_url != null && var.docker_image_name != null ? var.user_assigned_identity_client_id : null
@@ -147,9 +148,7 @@ resource "azurerm_linux_web_app" "webapplinux" {
   lifecycle {
     ignore_changes = [
       site_config[0].ip_restriction,
-      site_config[0].cors[0].allowed_origins,
-      site_config[0].health_check_eviction_time_in_min,
-      site_config[0].health_check_path
+      site_config[0].cors[0].allowed_origins
     ]
   }
 
@@ -177,8 +176,9 @@ resource "azurerm_linux_web_app_slot" "webapplinux_slot" {
     ip_restriction_default_action     = var.ip_restriction_default_action
     scm_ip_restriction_default_action = var.scm_ip_restriction_default_action
     # Startup command
-    app_command_line = var.app_command_line
-
+    app_command_line                  = var.app_command_line
+    health_check_path                 = var.health_check_path
+    health_check_eviction_time_in_min = var.health_check_eviction_time_in_min
 
     # Utilisation de l'UAI pour le pull d'images depuis ACR
     container_registry_managed_identity_client_id = var.docker_registry_server_url != null && var.docker_image_name != null ? var.user_assigned_identity_client_id : null
@@ -274,9 +274,7 @@ resource "azurerm_linux_web_app_slot" "webapplinux_slot" {
   lifecycle {
     ignore_changes = [
       site_config[0].ip_restriction,
-      site_config[0].cors[0].allowed_origins,
-      site_config[0].health_check_eviction_time_in_min,
-      site_config[0].health_check_path
+      site_config[0].cors[0].allowed_origins
     ]
   }
 }
