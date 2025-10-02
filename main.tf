@@ -26,7 +26,7 @@ resource "azurerm_linux_web_app" "webapplinux" {
     # Startup command
     app_command_line                  = var.app_command_line
     health_check_path                 = var.health_check_path
-    health_check_eviction_time_in_min = var.health_check_eviction_time_in_min
+    health_check_eviction_time_in_min = var.health_check_path != null ? var.health_check_eviction_time_in_min : null
 
     # Utilisation de l'UAI pour le pull d'images depuis ACR
     container_registry_managed_identity_client_id = var.docker_registry_server_url != null && var.docker_image_name != null ? var.user_assigned_identity_client_id : null
@@ -163,7 +163,7 @@ resource "azurerm_linux_web_app_slot" "webapplinux_slot" {
   virtual_network_subnet_id = var.virtual_network_subnet_id
   # Permet de référencer le Key Vault via l'UAI
   key_vault_reference_identity_id = var.user_assigned_identity_id
-  public_network_access_enabled   = var.public_network_access_enabled
+  public_network_access_enabled   = true
   client_affinity_enabled         = var.client_affinity_enabled
 
 
@@ -178,7 +178,7 @@ resource "azurerm_linux_web_app_slot" "webapplinux_slot" {
     # Startup command
     app_command_line                  = var.app_command_line
     health_check_path                 = var.health_check_path
-    health_check_eviction_time_in_min = var.health_check_eviction_time_in_min
+    health_check_eviction_time_in_min = var.health_check_path != null ? var.health_check_eviction_time_in_min : null
 
     # Utilisation de l'UAI pour le pull d'images depuis ACR
     container_registry_managed_identity_client_id = var.docker_registry_server_url != null && var.docker_image_name != null ? var.user_assigned_identity_client_id : null
