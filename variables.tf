@@ -354,3 +354,23 @@ variable "health_check_eviction_time_in_min" {
   description = "The amount of time in minutes that a node can be unhealthy before being removed from the load balancer. Possible values are between 2 and 10. Only valid in conjunction with health_check_path."
   default     = 5
 }
+
+variable "webapp_outbound_custom_dns" {
+  type        = bool
+  description = <<DESCRIPTION
+  Active ou pas la configuration dns custom sur la conf outbound de la webapp. 
+  (Seulement appliqué si les variables webapp_outbound_custom_dns 
+  et webapp_outbound_custom_dns_ip sont configurées)"
+  DESCRIPTION
+
+  default = false
+}
+
+variable "webapp_outbound_custom_dns_ip" {
+  type        = string
+  description = <<DESCRIPTION
+  "spécifie l'adresse IP des serveurs DNS que la webapp devra utiliser au lieu 
+  d'utiliser ceux définis dans les paramètres DNS du VNET"
+  DESCRIPTION
+  default     = null
+}

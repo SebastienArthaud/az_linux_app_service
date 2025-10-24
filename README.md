@@ -91,6 +91,8 @@
 | <a name="input_user_assigned_identity_client_id"></a> [user\_assigned\_identity\_client\_id](#input\_user\_assigned\_identity\_client\_id) | Client ID de l'UAI | `string` | `null` | no |
 | <a name="input_virtual_network_resource_group_name"></a> [virtual\_network\_resource\_group\_name](#input\_virtual\_network\_resource\_group\_name) | Nom du resource group du réseau virtuel (VNET) ou sera créé le private endpoint, obligatoire si le storage account a un private endpoint | `string` | `null` | no |
 | <a name="input_virtual_network_subnet_id"></a> [virtual\_network\_subnet\_id](#input\_virtual\_network\_subnet\_id) | ID du subnet utilisé pour le VNET integration | `string` | `null` | no |
+| <a name="input_webapp_outbound_custom_dns"></a> [webapp\_outbound\_custom\_dns](#input\_webapp\_outbound\_custom\_dns) | Active ou pas la configuration dns custom sur la conf outbound de la webapp. <br/>  (Seulement appliqué si les variables webapp\_outbound\_custom\_dns <br/>  et webapp\_outbound\_custom\_dns\_ip sont configurées)" | `bool` | `false` | no |
+| <a name="input_webapp_outbound_custom_dns_ip"></a> [webapp\_outbound\_custom\_dns\_ip](#input\_webapp\_outbound\_custom\_dns\_ip) | "spécifie l'adresse IP des serveurs DNS que la webapp devra utiliser au lieu <br/>  d'utiliser ceux définis dans les paramètres DNS du VNET" | `string` | `null` | no |
 | <a name="input_workspace_id"></a> [workspace\_id](#input\_workspace\_id) | ID du Log Analytics Workspace | `string` | `null` | no |
 
 ## Outputs

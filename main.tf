@@ -102,6 +102,9 @@ resource "azurerm_linux_web_app" "webapplinux" {
       "ApplicationInsightsAgent_EXTENSION_VERSION" = "~3",
       "APPINSIGHTS_INSTRUMENTATIONKEY"             = var.application_insights_key,
       "APPLICATIONINSIGHTS_CONNECTION_STRING"      = var.application_insights_connection_str
+    } : {},
+    var.webapp_outbound_custom_dns == true && var.webapp_outbound_custom_dns_ip != null ? {
+      "WEBSITE_DNS_SERVER" = var.webapp_outbound_custom_dns_ip
     } : {}
   )
 
@@ -229,6 +232,9 @@ resource "azurerm_linux_web_app_slot" "webapplinux_slot" {
       "ApplicationInsightsAgent_EXTENSION_VERSION" = "~3",
       "APPINSIGHTS_INSTRUMENTATIONKEY"             = var.application_insights_key,
       "APPLICATIONINSIGHTS_CONNECTION_STRING"      = var.application_insights_connection_str
+    } : {},
+    var.webapp_outbound_custom_dns == true && var.webapp_outbound_custom_dns_ip != null ? {
+      "WEBSITE_DNS_SERVER" = var.webapp_outbound_custom_dns_ip
     } : {}
   )
 
